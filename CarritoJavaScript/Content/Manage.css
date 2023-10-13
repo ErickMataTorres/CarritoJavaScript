@@ -1,0 +1,37 @@
+﻿h2 {
+    text-align: center;
+}
+
+#tableRoles {
+    text-align: center;
+}
+
+th {
+    text-align: center;
+}
+
+.searchContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+#searchLabel {
+    margin-right: 2%;
+}
+
+.searchButton {
+    margin-right: 2%;
+}
+
+.inputContainerModal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+    .inputContainerModal label {
+        margin-right: 2%;
+    }
