@@ -1,5 +1,5 @@
 
-const API_URL = "https://localhost:44322";
+import { API_URL } from "./GlobalVariables.js";
 
 //const itemsPerPage = 1;
 //const tablePaginator = document.getElementById("tablePaginator");
@@ -17,9 +17,32 @@ function LoadPage() {
 
 }
 
-function OpenModal(action) {
+function OpenModal(action, data) {
+
+    console.log(data);
+
     let myModalTitle = document.getElementById("myModalTitle");
+    let myModalBody = document.getElementById("myModalBody");
     myModalTitle.innerHTML = action;
+    let idInput = document.getElementById("idInput");
+    let nameInput = document.getElementById("nameInput");
+    let administratorSelect = document.getElementById("administratorSelect");
+    if (action === "New") {
+        idInput.value = "New";
+        nameInput.value = "";
+        administratorSelect.value = 0;
+    } else {
+        if (action === "Modify") {
+            let separateData = data.split('|');
+            idInput.value = separateData[0];
+            nameInput.value = separateData[1];
+            administratorSelect.value = separateData[2];
+            //document.addEventListener("DOMContentLoaded", function () {
+            //    idInput.focus();
+            //});
+        }
+    }
+    
 }
 
 
@@ -85,8 +108,10 @@ async function LoadTable() {
                                 <td>${data[counter].Name}</td>
                                 <td>${data[counter].Administrator}</td>
                                 <td>
-                                    <button class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#myModal' onclick='OpenModal("Modify");'>Modify</button>
-                                    <button class='btn btn-danger'>Delete</button>
+                                    <button class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#myModal'
+                                        onclick='OpenModal("Modify","${data[counter].Id}|${data[counter].Name}|${data[counter].Administrator}");'>Modify</button>
+                                    <button class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#myModal'
+                                        onclick="OpenModal('Delete', '${data[counter].Id}');">Delete</button>
                                     </td>
                             </tr>
                         `;
